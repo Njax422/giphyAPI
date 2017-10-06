@@ -1,3 +1,20 @@
-#buttons #addButton #display {
-	border-style: 1px solid black;
+button {	
+	margin: 10px;
 }
+
+#gif-form {
+	margin: 20px;
+}
+
+#add-gif {
+	margin-left: 15px;
+}
+
+#display-gifs {
+	width: 100%;
+	background-color: red;
+	display: inline;
+	float: left;
+
+}
+
