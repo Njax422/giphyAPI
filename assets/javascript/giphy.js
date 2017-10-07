@@ -1,4 +1,4 @@
-var topics = ["Coffee", "Doughnut", "Bacon", "Eggs"];
+var topics = ["Coffee", "Doughnut", "Bacon", "Eggs", "Pancakes"];
 
 function displayGifs() {
     var x = $(this).attr("data-name");
@@ -17,7 +17,11 @@ function displayGifs() {
                 var p =$("<p>").text("Rating: " + rating);
                 var gifDiv = $("<div class='gifs'>");
                 var image = $("<img>");
-                image.attr("src", results[i].images.fixed_height_still.url);
+                image.attr({
+                    "src": results[i].images.fixed_height.url,
+                    "data-still": results[i].images.fixed_height_still.url,
+                    "data-animate": results[i].images.fixed_height.url
+                })
                 gifDiv.append(image);
                 gifDiv.append(p);
                 $("#display-gifs").prepend(gifDiv);
@@ -30,7 +34,7 @@ function renderButtons() {
     $("#buttons-view").empty();
     for (var i = 0; i < topics.length; i++) {
         var a = $("<button>");
-        a.addClass("gifButton btn btn-info");
+        a.addClass("gif btn btn-info");
         a.attr("data-name", topics[i]);
         a.text(topics[i]);
         $("#buttons-view").append(a);
@@ -44,19 +48,17 @@ $("#add-gif").on("click", function(event) {
     renderButtons();
 });
 
-// Adding a click event listener to all elements with a class of "movie"
-$(document).on("click", ".gifButton", displayGifs);
-
-// Calling the renderButtons function to display the intial buttons
+$(document).on("click", ".gif", displayGifs);
 renderButtons();
 
+$(document).on("click", "img", function(){
+    var state = $(this).attr("data-state");
+    if (state ==="animate") {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+    } else {
+        $(this).attr("src", $(this).attr("data-animate")); 
+        $(this).attr("data-state", "animate");
+    }
 
-
-
-
-
-
-
-
-
-
+});

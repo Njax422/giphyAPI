@@ -1,5 +1,7 @@
 button {	
 	margin: 10px;
+	display: inline;
+
 }
 
 #gif-form {
@@ -12,9 +14,6 @@ button {
 
 #display-gifs {
 	width: 100%;
-	background-color: red;
 	display: inline;
-	float: left;
 
 }
-
